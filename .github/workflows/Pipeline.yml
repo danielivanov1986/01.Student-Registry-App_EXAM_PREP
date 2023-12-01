@@ -10,11 +10,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -27,5 +23,17 @@ jobs:
       run: npm install
     - name: Test the app 
       run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MY_RENDER_SERVICE_ID_EXAM }}
+          api-key: ${{ secrets.MY_RENDER_API_KEY_EXAM }}
+
+    
+    
 
 
